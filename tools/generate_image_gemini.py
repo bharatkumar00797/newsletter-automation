@@ -29,7 +29,7 @@ DEFAULT_MODEL = "gemini-3.1-flash-image"
 
 
 def generate_image(prompt: str, out_name: str) -> Path:
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = (os.environ.get("GEMINI_API_KEY") or "").strip()
     if not api_key:
         print(
             "GEMINI_API_KEY is not set. Get a key at https://aistudio.google.com/apikey "
