@@ -25,9 +25,9 @@ Give it a topic, and the pipeline:
    (`tools/generate_image_gemini.py`)
 5. **Renders** everything into a branded, dark-mode-native HTML newsletter
    (`tools/render_newsletter.py`, styled by `tools/templates/newsletter_base.html`)
-6. **Publishes** the result as a shareable Claude Artifact — the actual
-   deliverable, per this repo's "outputs live in the cloud, not in `.tmp/`"
-   rule (see [`CLAUDE.md`](CLAUDE.md))
+6. **Publishes** the result as a shareable interactive HTML preview — the
+   actual deliverable, per this repo's "outputs live in the cloud, not in
+   `.tmp/`" rule
 
 The full step-by-step SOP — including how to handle a vague topic, missing
 data, or a failed image generation — is in
@@ -42,10 +42,8 @@ each layer one job:
 | Layer | Lives in | Responsibility |
 |---|---|---|
 | **Workflows** | [`workflows/`](workflows/) | Markdown SOPs — the objective, inputs, steps, and edge cases for a task, written like you'd brief a teammate |
-| **Agents** | (you, or an AI agent like Claude Code) | Reads a workflow, decides what to run and in what order, handles failures, asks when something's ambiguous |
+| **Agents** | (you, or an automated agent) | Reads a workflow, decides what to run and in what order, handles failures, asks when something's ambiguous |
 | **Tools** | [`tools/`](tools/) | Small, deterministic Python scripts — one script per capability, each testable on its own |
-
-See [`CLAUDE.md`](CLAUDE.md) for the full framework write-up this repo follows.
 
 ## Brand vs. data color
 
@@ -83,7 +81,7 @@ cp .env.example .env            # then fill in GEMINI_API_KEY for header images
 Then follow [`workflows/newsletter.md`](workflows/newsletter.md) end to end:
 research and draft a topic into `.tmp/draft_<slug>.json`, generate any charts
 and the header image, render with `tools/render_newsletter.py`, and publish
-the result as an Artifact.
+the result as an interactive HTML preview.
 
 `tools/generate_chart.py` and `tools/render_newsletter.py` have no external
 dependencies beyond what's in `requirements.txt` and can be run standalone
@@ -98,5 +96,4 @@ the header image.
 Adding a new capability follows the same loop every time: read (or write) the
 workflow, check `tools/` for something that already does the job, build a new
 tool only if nothing fits, verify it, then update the workflow with what you
-learned. That loop — and the reasoning for it — is spelled out in
-[`CLAUDE.md`](CLAUDE.md).
+learned.

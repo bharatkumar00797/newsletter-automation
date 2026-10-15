@@ -4,7 +4,7 @@
 
 Given a topic (and optionally an angle or audience), produce a researched,
 on-brand HTML newsletter issue with data charts and an illustrative header
-image, and publish it as a shareable Claude Artifact.
+image, and publish it as a shareable interactive HTML preview.
 
 ## Brand system
 
@@ -81,19 +81,19 @@ validator before changing either palette — don't eyeball it.
    ```
    Writes `.tmp/newsletter_<slug>.html`.
 
-7. **Publish as a Claude Artifact.** Read the rendered HTML, then use the
-   Artifact tool with `file_path` set to the rendered HTML and `files` set to
+7. **Publish as an interactive HTML preview.** Read the rendered HTML, then use
+   the publishing tool with `file_path` set to the rendered HTML and `files` set to
    the chart PNGs and header image, published at the same relative paths used
    in the draft (`charts/<name>.png`, `images/header.png`) so the `<img>` tags
    resolve without any rewriting. This is the deliverable — a shareable link,
-   per CLAUDE.md's rule that outputs the user needs live in a cloud service,
+   per the project rule that outputs the user needs live in a cloud service,
    not `.tmp/`.
 
-8. **Report the Artifact link back to the user.**
+8. **Report the preview link back to the user.**
 
 ## Expected outputs
 
-- A published Artifact (styled HTML newsletter issue with embedded charts and
+- A published interactive HTML preview (styled HTML newsletter issue with embedded charts and
   header image) — the deliverable.
 - `.tmp/research_<slug>.md`, `.tmp/draft_<slug>.json`,
   `.tmp/newsletter_<slug>.html`, `.tmp/charts/*.png`, `.tmp/images/*.png` —
